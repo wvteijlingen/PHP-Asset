@@ -1,3 +1,6 @@
+####This is very much a work in progress. I do not recommend using PHP-Asset in production yet.
+
+
 PHPAsset
 ========
 PHPAsset simplifies the storing and transforming of 'assets'. An asset can be anything: an image, a PDF, an audio file, a simple text file, etc. It uses chainable transformers to transform these assets. For example: you can create a chain that resizes an image, masks it and adds a glossy reflection. Or, it trims an audio file and adds compression, it's up to you!
