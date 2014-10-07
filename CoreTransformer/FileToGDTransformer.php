@@ -2,11 +2,14 @@
 
 namespace PHPAsset\CoreTransformer;
 
-class FileToGDTransformer extends \PHPAsset\Transformer\AbstractTransformer {
+use PHPAsset\Transformer;
+use PHPAsset\Asset;
+
+class FileToGDTransformer extends AbstractTransformer {
 	public $inType = 'file';
 	public $outType = 'image_resource_identifier';
 
-	public function transformAsset($asset, $settings) {
+	public function transformAsset(Asset $asset, array $settings) {
 		$filePath = $asset->getFilePath();
 
 		$asset->setData(imagecreatefrompng($filePath));

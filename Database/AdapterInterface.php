@@ -2,14 +2,15 @@
 
 namespace PHPAsset\Database;
 
+use PHPAsset\Asset;
+
 interface AdapterInterface {
-	public function storeAsset($asset);
-	public function removeAsset($asset);
-	public function replaceAsset($asset);
+	public function storeAsset(Asset $asset);
+	public function removeAssetByName($asset);
 	public function getAssetByName($assetName);
 
-	public function storeTransformedAsset($asset);
+	public function storeTransformedAsset(Asset $asset);
 	public function removeTransformedAssetsByOriginalId($originalAssetId);
-	public function getTransformedAssets($originalAssetId);
-	public function getTransformedAsset($originalAssetId, $transformationHash);
+	public function getTransformedAssetsByOriginalId($originalAssetId);
+	public function getTransformedAssetByOriginalId($originalAssetId, $transformationHash);
 }

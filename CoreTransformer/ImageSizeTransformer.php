@@ -2,11 +2,14 @@
 
 namespace PHPAsset\CoreTransformer;
 
-class ImageSizeTransformer extends \PHPAsset\Transformer\AbstractTransformer {
+use PHPAsset\Transformer;
+use PHPAsset\Asset;
+
+class ImageSizeTransformer extends AbstractTransformer {
 	public $inType = 'file';
 	public $outType = 'image_resource_identifier';
 
-	public function transformAsset($asset, $settings) {
+	public function transformAsset(Asset $asset, array $settings) {
 		$filePath = $asset->getFilePath();
 
 		list($originalWidth, $originalHeight) = getimagesize($filePath);

@@ -1,7 +1,6 @@
 <?php
 
 namespace PHPAsset;
-use PDO;
 
 class AssetManager {
 
@@ -73,7 +72,7 @@ class AssetManager {
 		unlink($this->_originalsDirectory . DIRECTORY_SEPARATOR . $identifier);
 
 		//Remove transformed cached assets from disk
-		$transformedAssets = $this->_database->getTransformedAssets($asset->getId());
+		$transformedAssets = $this->_database->getTransformedAssetsByOriginalId($asset->getId());
 
 		foreach ($transformedAssets as $transformedAsset) {
 			$filePath = $this->_cacheDirectory . DIRECTORY_SEPARATOR . $transformedAsset->getIdentifier();
@@ -210,7 +209,7 @@ class AssetManager {
 	}
 
 	protected function _getTransformedAssetFromCache($originalAssetId, $transformationHash) {
-		$cachedAsset = $this->_database->getTransformedAsset($originalAssetId, $transformationHash);
+		$cachedAsset = $this->_database->getTransformedAssetByOriginalId($originalAssetId, $transformationHash);
 
 		if($cachedAsset) {
 			$cachedAsset->setFilePath($this->_cacheDirectory . DIRECTORY_SEPARATOR . $cachedAsset->getIdentifier());

@@ -1,7 +1,9 @@
 <?php
 
 namespace PHPAsset\Database;
+
 use PDO;
+use PHPAsset\Asset;
 
 class PDOAdapter implements AdapterInterface {
 	public $host;
@@ -24,7 +26,7 @@ class PDOAdapter implements AdapterInterface {
 		$this->_pdo = new PDO("mysql:host={$host};dbname={$databaseName}", $user, $password);
 	}
 
-	public function storeAsset($asset) {
+	public function storeAsset(Asset $asset) {
 		$query = "INSERT INTO `original_assets` (`name`, `file_identifier`, `type`)
 		            VALUES (:name, :file_identifier, :type)";
 
@@ -77,7 +79,7 @@ class PDOAdapter implements AdapterInterface {
 	}
 
 
-	public function storeTransformedAsset($asset) {
+	public function storeTransformedAsset(Asset $asset) {
 		$query = "INSERT INTO `transformed_assets` (`original_asset_id`, `file_identifier`, `type`, `transformation_hash`)
 			        VALUES (:original_asset_id, :file_identifier, :type, :transformation_hash)";
 
@@ -108,7 +110,7 @@ class PDOAdapter implements AdapterInterface {
 		return $success;
 	}
 
-	public function getTransformedAssets($originalAssetId) {
+	public function getTransformedAssetsByOriginalId($originalAssetId) {
 		$query = "SELECT * FROM `transformed_assets`
 		          WHERE `original_asset_id` = :original_asset_id";
 
@@ -130,7 +132,7 @@ class PDOAdapter implements AdapterInterface {
 		return false;
 	}
 
-	public function getTransformedAsset($originalAssetId, $transformationHash) {
+	public function getTransformedAssetByOriginalId($originalAssetId, $transformationHash) {
 		$query = "SELECT * FROM `transformed_assets`
 		          WHERE `original_asset_id` = :original_asset_id
 		            AND `transformation_hash` = :transformation_hash";

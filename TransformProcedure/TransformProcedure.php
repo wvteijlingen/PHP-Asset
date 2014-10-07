@@ -22,7 +22,7 @@ class TransformProcedure {
 		return $this->_transformations;
 	}
 
-	public function setTransformations($transformations) {
+	public function setTransformations(array $transformations) {
 		$this->_transformations = $transformations;
 	}
 
